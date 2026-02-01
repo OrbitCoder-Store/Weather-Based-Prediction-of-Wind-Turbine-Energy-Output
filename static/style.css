@@ -11,7 +11,7 @@ body {
 }
 
 .predict-bg {
-    background: url("../templates/windmill.jpg") no-repeat center center/cover;
+    background: url("images/windmill.jpg") no-repeat center center/cover;
     height: 100vh;
 }
 
@@ -121,31 +121,6 @@ input, select {
 @keyframes slideUp {
     from { transform: translateY(40px); }
     to { transform: translateY(0); }
-}
-/* ================= DARK MODE ================= */
-.dark-mode {
-    background: #121212 !important;
-    color: #e0e0e0 !important;
-}
-
-.dark-mode .glass-card,
-.dark-mode .weather-box {
-    background: rgba(30, 30, 30, 0.85) !important;
-    color: #ffffff !important;
-}
-
-.dark-mode input,
-.dark-mode select {
-    background: #1f1f1f;
-    color: #ffffff;
-}
-
-.dark-mode .primary-btn {
-    background: #00e676;
-}
-
-.dark-mode .secondary-btn {
-    background: #ffb300;
 }
 
 /* ================= LOADER ================= */

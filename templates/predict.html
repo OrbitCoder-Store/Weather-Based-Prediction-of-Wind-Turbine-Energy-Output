@@ -7,12 +7,6 @@
 
 <body class="predict-bg">
 
-<!-- 🌙 DARK MODE BUTTON (NEW) -->
-<button onclick="toggleDarkMode()"
-        class="secondary-btn"
-        style="position:fixed; top:15px; right:20px; z-index:1000;">
-    🌙 Dark Mode
-</button>
 
 <div class="glass-card slide-up">
 
@@ -21,13 +15,30 @@
     <!-- ⏳ LOADER TRIGGER ADDED -->
     <form action="{{ url_for('windapi') }}" method="post" onsubmit="showLoader()">
         <select name="city" required>
-            <option value="">Select City</option>
-            <option>Hyderabad</option>
-            <option>Bengaluru</option>
-            <option>Chennai</option>
-            <option>Delhi</option>
-            <option>Mumbai</option>
-        </select>
+    <option value="">Select City</option>
+
+    <!-- 🌆 Major Metros -->
+    <option>Delhi</option>
+    <option>Mumbai</option>
+    <option>Bengaluru</option>
+    <option>Chennai</option>
+    <option>Kolkata</option>
+    <option>Hyderabad</option>
+
+    <!-- 🌬 Wind-Rich / Coastal Cities -->
+    <option>Visakhapatnam</option>
+    <option>Vijayawada</option>
+    <option>Tirupati</option>
+    <option>Coimbatore</option>
+    <option>Madurai</option>
+    <option>Trivandrum</option>
+    <option>Kochi</option>
+
+    <!-- 🌾 Other Cities -->
+    <option>Pune</option>
+    <option>Ahmedabad</option>
+</select>
+
         <button class="secondary-btn">Get Weather</button>
     </form>
 
@@ -60,16 +71,6 @@
     <div class="spinner"></div>
 </div>
 
-<!-- 🌙 DARK MODE + LOADER SCRIPT (NEW) -->
-<script>
-function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-}
-
-function showLoader() {
-    document.getElementById("loader").style.display = "block";
-}
-</script>
 
 </body>
 </html>
