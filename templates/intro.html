@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wind Energy Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="intro-bg">
+
+<div class="intro-overlay">
+    <h1 class="slide-down">🌬 Wind Energy Prediction</h1>
+    <p class="fade-in">
+        Predicting the Energy Output of Wind Turbine<br>
+        Based on Weather Conditions
+    </p>
+
+    <a href="{{ url_for('predict_page') }}">
+        <button class="primary-btn">Start Prediction</button>
+    </a>
+</div>
+
+</body>
+</html>

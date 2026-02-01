@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predict Energy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="predict-bg">
+
+<!-- 🌙 DARK MODE BUTTON (NEW) -->
+<button onclick="toggleDarkMode()"
+        class="secondary-btn"
+        style="position:fixed; top:15px; right:20px; z-index:1000;">
+    🌙 Dark Mode
+</button>
+
+<div class="glass-card slide-up">
+
+    <h2>🌤 Weather Information</h2>
+
+    <!-- ⏳ LOADER TRIGGER ADDED -->
+    <form action="{{ url_for('windapi') }}" method="post" onsubmit="showLoader()">
+        <select name="city" required>
+            <option value="">Select City</option>
+            <option>Hyderabad</option>
+            <option>Bengaluru</option>
+            <option>Chennai</option>
+            <option>Delhi</option>
+            <option>Mumbai</option>
+        </select>
+        <button class="secondary-btn">Get Weather</button>
+    </form>
+
+    {% if temp %}
+    <div class="weather-box fade-in">
+        <p>🌡 Temp: {{ temp }}</p>
+        <p>💧 Humidity: {{ humid }}</p>
+        <p>🌬 Wind Speed: {{ speed }}</p>
+    </div>
+    {% endif %}
+
+    <h2>⚡ Energy Prediction</h2>
+
+    <!-- ⏳ LOADER TRIGGER ADDED -->
+    <form action="{{ url_for('result') }}" method="post" onsubmit="showLoader()">
+        <input type="number" step="any" name="theoretical_power"
+               placeholder="Theoretical Power (KWh)" required>
+
+        <input type="number" step="any" name="wind_speed"
+               value="{{ wind_speed if wind_speed }}"
+               placeholder="Wind Speed (m/s)" required>
+
+        <button class="primary-btn">Predict Energy</button>
+    </form>
+
+</div>
+
+<!-- ⏳ LOADING ANIMATION (NEW) -->
+<div class="loader" id="loader">
+    <div class="spinner"></div>
+</div>
+
+<!-- 🌙 DARK MODE + LOADER SCRIPT (NEW) -->
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+</body>
+</html>
