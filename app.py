@@ -5,7 +5,10 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-model = joblib.load("power_prediction.sav")
+import os
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "power_prediction.sav")
+model = joblib.load(MODEL_PATH)
+
 
 # ---------- LANDING PAGE ----------
 @app.route('/')
