@@ -219,7 +219,6 @@ http://127.0.0.1:5000/
 ## 🎨 Features
 
 * 🌤 Weather-based energy prediction
-* 🌙 Dark mode support
 * ⏳ Loading animation
 * 📊 Accuracy visualization
 * ⚡ Real-time prediction output
@@ -237,5 +236,6 @@ This project demonstrates how **machine learning and web technologies** can be c
 ## 👨‍💻 Developed By
 
 **APSCHE AIML Project – Renewable Energy & Machine Learning**
+
 
 - Aditya Indana
