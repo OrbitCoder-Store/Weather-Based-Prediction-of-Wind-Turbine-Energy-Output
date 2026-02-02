@@ -9,5 +9,4 @@ requests==2.31.0
 setuptools>=65.0
 wheel
 gunicorn
-
-
+cython
