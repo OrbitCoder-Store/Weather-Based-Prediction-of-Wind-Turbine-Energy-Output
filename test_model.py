@@ -1,58 +1,51 @@
-"""
-Test script to validate the trained model's functionality.
-Tests model predictions on sample data.
-"""
-
 import pandas as pd
 import joblib
+import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error
 
-# Load the trained model
-model = joblib.load("power_prediction.sav")
-
-# Load the dataset for testing
+# Load dataset
 df = pd.read_csv("data/T1.csv")
+
+# Clean column names (VERY IMPORTANT)
 df.columns = df.columns.str.strip()
 
 # Features and target
 X = df[['WindSpeed(m/s)', 'Theoretical_Power_Curve (KWh)']]
 y = df['LV ActivePower (kW)']
 
-# Make predictions on the full dataset
-predictions = model.predict(X)
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
-# Calculate metrics
-mse = mean_squared_error(y, predictions)
+# Train model
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Predictions
+y_pred = model.predict(X_test)
+
+# Metrics
+mse = mean_squared_error(y_test, y_pred)
 rmse = np.sqrt(mse)
-r2 = r2_score(y, predictions)
+r2 = r2_score(y_test, y_pred)
 
-print("=" * 50)
-print("MODEL TESTING RESULTS")
-print("=" * 50)
-print(f"R² Score: {r2:.4f}")
-print(f"RMSE: {rmse:.4f}")
-print(f"MSE: {mse:.4f}")
-print("=" * 50)
+print("R2 Score:", r2)
+print("RMSE:", rmse)
 
-# Test with sample data
-print("\nSAMPLE PREDICTIONS:")
-print("-" * 50)
+# Save model
+joblib.dump(model, "power_prediction.sav")
 
-sample_data = pd.DataFrame([
-    [5.0, 100.0],
-    [10.0, 200.0],
-    [15.0, 300.0],
-], columns=['WindSpeed(m/s)', 'Theoretical_Power_Curve (KWh)'])
+# Accuracy graph
+plt.figure()
+plt.scatter(y_test, y_pred)
+plt.xlabel("Actual Power (kW)")
+plt.ylabel("Predicted Power (kW)")
+plt.title("Actual vs Predicted Power")
+plt.savefig("static/accuracy_graph.png")
+plt.close()
 
-sample_predictions = model.predict(sample_data)
-
-for idx, (ws, tp) in enumerate(zip(sample_data['WindSpeed(m/s)'], 
-                                    sample_data['Theoretical_Power_Curve (KWh)'])):
-    print(f"Test {idx + 1}:")
-    print(f"  Wind Speed: {ws} m/s")
-    print(f"  Theoretical Power: {tp} KWh")
-    print(f"  Predicted Power: {sample_predictions[idx]:.2f} kW")
-    print()
-
-print("✅ Model test completed successfully!")
+print("✅ Model trained & accuracy graph saved")
