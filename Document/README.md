@@ -299,13 +299,13 @@ http://127.0.0.1:5000/
 ## 📸 Application Screenshots
 
 ### Landing Page
-![Landing Page](Project-Files/Flask-Wind-Mill-Power-Prediction/static/images/output1.jpeg)
+![Landing Page](/Project-Files/Flask-Wind-Mill-Power-Prediction/static/images/output1.jpeg)
 
 ### Prediction Interface
-![Prediction Page](Project-Files/Flask-Wind-Mill-Power-Prediction/static/images/output2.jpeg)
+![Prediction Page](/Project-Files/Flask-Wind-Mill-Power-Prediction/static/images/output2.jpeg)
 
 ### Prediction Results
-![Results](Project-Files/Flask-Wind-Mill-Power-Prediction/static/images/output3.jpeg)
+![Results](/Project-Files/Flask-Wind-Mill-Power-Prediction/static/images/output3.jpeg)
 
 ---
 
