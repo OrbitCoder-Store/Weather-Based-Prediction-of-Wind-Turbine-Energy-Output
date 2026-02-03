@@ -372,5 +372,5 @@ This project demonstrates how **machine learning and web technologies** can be c
 - [Aditya Indana](https://github.com/22MH1A42G1)
 - [KAMPARAPU SRI RAM](https://github.com/22MH1A42G5)
 - [Vinay Charu Kirthan Rohit Kotha](https://github.com/RohitKotha)
-- Likhitha Hasini Chebolu
+- [Likhitha Hasini Chebolu](https://github.com/22mh1a42h0)
 - [Mary Shakeena Meka](https://github.com/maryshakeena)
