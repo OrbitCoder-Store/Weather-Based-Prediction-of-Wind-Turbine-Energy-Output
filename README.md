@@ -75,7 +75,7 @@ By completing this project, you will be able to:
 ## 🔄 Project Flow
 
 1. User interacts with the Web UI
-2. Weather data is fetched (optional API integration)
+2. Weather data is fetched (API integration)
 3. Input is passed to the ML model
 4. Model predicts wind turbine energy output
 5. Prediction is displayed to the user
@@ -106,8 +106,6 @@ By completing this project, you will be able to:
 
 Regression algorithms used:
 
-* Linear Regression
-* Decision Tree Regression
 * **Random Forest Regression** (final model)
 
 ### 5️⃣ Model Evaluation
@@ -153,62 +151,106 @@ Regression algorithms used:
 
 ### Required Python Packages
 
+Install from requirements.txt:
+
 ```bash
-pip install numpy
-pip install pandas
-pip install matplotlib
-pip install scikit-learn
-pip install flask
-pip install requests
+pip install -r requirements.txt
 ```
+
+**Package List:**
+
+* numpy==1.24.4
+* pandas==2.0.3
+* scipy==1.10.1
+* scikit-learn==1.2.2
+* joblib==1.3.2
+* flask
+* requests
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-Flask-Wind-Mill-Power-Prediction/
+APSCHE-Project/
 │
-├── data/
-│   └── T1.csv
+├── README.md
 │
-├── static/
-│   ├── style.css
-│   ├── accuracy_graph.png
-│   └── images/
-│       ├── m123.gif
-│       └── windmill.jpg
+├── Document/
+│   └── README.md
 │
-├── templates/
-│   ├── intro.html
-│   ├── predict.html
-│   └── result.html
+├── Project-Files/
+│   ├── data/
+│   │   └── T1.csv
+│   │
+│   ├── Flask-Wind-Mill-Power-Prediction/
+│   │   ├── static/
+│   │   │   ├── style.css
+│   │   │   └── images/
+│   │   │       ├── m123.gif
+│   │   │       ├── windmill.jpg
+│   │   │       ├── output1.jpeg
+│   │   │       ├── output2.jpeg
+│   │   │       └── output3.jpeg
+│   │   │
+│   │   ├── templates/
+│   │   │   ├── intro.html
+│   │   │   └── predict.html
+│   │   │
+│   │   ├── app.py
+│   │   ├── windApp.py
+│   │   └── power_prediction.sav
+│   │
+│   ├── power_prediction.sav
+│   ├── Wind_mill_model.ipynb
+│   ├── wind_turbine_energy_prediction.py
+│   ├── test_model.py
+│   └── requirements.txt
 │
-├── app.py
-├── power_prediction.sav
-├── train_model.py
-├── test_model.py
-├── requirements.txt
-└── README.md
+└── Video Demo/
+    └── README.md
+
+
 ```
 
 ---
 
 ## 🚀 How to Run the Project
 
-### Step 1: Activate Environment
+### Step 1: Clone the Repository
 
 ```bash
-venv\Scripts\activate
+git clone <repository-url>
+cd ZIPfile/Project-Files/Flask-Wind-Mill-Power-Prediction
 ```
 
-### Step 2: Run Flask App
+### Step 2: Install Dependencies
+
+```bash
+pip install -r ../requirements.txt
+```
+
+Or install individually:
+
+```bash
+pip install numpy==1.24.4
+pip install pandas==2.0.3
+pip install scipy==1.10.1
+pip install scikit-learn==1.2.2
+pip install joblib==1.3.2
+pip install flask
+pip install requests
+```
+
+### Step 3: Run the Flask Application
 
 ```bash
 python app.py
 ```
 
-### Step 3: Open Browser
+### Step 4: Access the Application
+
+Open your web browser and navigate to:
 
 ```
 http://127.0.0.1:5000/
@@ -216,14 +258,103 @@ http://127.0.0.1:5000/
 
 ---
 
+## 💡 How to Use the Application
+
+### Method 1: Using Weather API
+
+1. Navigate to the prediction page
+2. Enter a city name (e.g., "London", "New York")
+3. Click "Fetch Weather Data"
+4. The system will automatically retrieve weather parameters
+5. Click "Predict Energy Output"
+6. View the predicted energy output in kW
+
+### Method 2: Manual Input
+
+1. Navigate to the prediction page
+2. Manually enter the following parameters:
+   * Temperature (°C)
+   * Humidity (%)
+   * Pressure (mmHG)
+   * Wind Speed (m/s)
+3. Click "Predict Energy Output"
+4. View the predicted energy output in kW
+
+---
+
 ## 🎨 Features
 
 * 🌤 Weather-based energy prediction
-* 🌙 Dark mode support
+* � Weather API integration (OpenWeatherMap)
 * ⏳ Loading animation
-* 📊 Accuracy visualization
-* ⚡ Real-time prediction output
-* 📱 Responsive UI
+* 📊 Real-time prediction visualization
+* ⚡ Live energy output prediction
+* 📱 Responsive UI design
+* 🎯 Manual input or API-based weather data
+
+---
+
+## 📸 Application Screenshots
+
+### Landing Page
+![Landing Page](Project-Files/Flask-Wind-Mill-Power-Prediction/static/images/output1.jpeg)
+
+### Prediction Interface
+![Prediction Page](Project-Files/Flask-Wind-Mill-Power-Prediction/static/images/output2.jpeg)
+
+### Prediction Results
+![Results](Project-Files/Flask-Wind-Mill-Power-Prediction/static/images/output3.jpeg)
+
+---
+
+## 📋 File Descriptions
+
+### Main Files
+
+* **app.py** - Main Flask application with routes and API integration
+* **windApp.py** - Alternative Flask application implementation
+* **Wind_mill_model.ipynb** - Jupyter notebook for model training and analysis
+* **wind_turbine_energy_prediction.py** - Python script for model development
+* **test_model.py** - Model testing and evaluation script
+* **power_prediction.sav** - Trained machine learning model (joblib format)
+
+### Data Files
+
+* **data/T1.csv** - Wind turbine historical data for training
+
+### Templates
+
+* **intro.html** - Landing page template
+* **predict.html** - Prediction page with input forms and results display
+
+### Static Files
+
+* **style.css** - Styling for the web application
+* **images/** - Contains UI images and application screenshots
+
+---
+
+## 🔧 Model Details
+
+The project uses **Random Forest Regression** as the final model for predicting wind turbine energy output. The model is trained on historical weather data including:
+
+* Wind Speed (m/s)
+* Temperature (°C)
+* Humidity (%)
+* Atmospheric Pressure (mmHG)
+
+The trained model is saved using **joblib** and integrated with the Flask application for real-time predictions.
+
+---
+
+## 🌐 API Integration
+
+The application integrates with **OpenWeatherMap API** to fetch real-time weather data for any city. Users can either:
+
+1. Enter weather parameters manually
+2. Fetch weather data automatically by entering a city name
+
+**API Key**: The application uses OpenWeatherMap API (included in app.py)
 
 ---
 
@@ -238,4 +369,8 @@ This project demonstrates how **machine learning and web technologies** can be c
 
 **APSCHE AIML Project – Renewable Energy & Machine Learning**
 
-- Aditya Indana
+- [Aditya Indana](https://github.com/22MH1A42G1)
+- [KAMPARAPU SRI RAM](https://github.com/22MH1A42G5)
+- [Vinay Charu Kirthan Rohit Kotha](https://github.com/RohitKotha)
+- Likhitha Hasini Chebolu
+- [Mary Shakeena Meka](https://github.com/maryshakeena)
