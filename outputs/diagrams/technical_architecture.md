@@ -1,51 +1,33 @@
 # Technical Architecture Diagram
 
 ```mermaid
-graph TB
-    subgraph "User Interface Layer"
-        UI["🌐 Web UI<br/>HTML5 + CSS3"]
+flowchart TB
+    subgraph UI_LAYER[User Interface Layer]
+        UI[Web UI]
     end
-    
-    subgraph "Flask Backend"
-        ROUTE["📍 Route Handler<br/>app.py"]
-        API["🔌 API Integration<br/>OpenWeatherMap"]
-        PROCESSING["⚙️ Data Processing<br/>NumPy + Pandas"]
+    subgraph BACKEND[Flask Backend]
+        ROUTE[Route Handler]
+        API[Weather API Integration]
+        PROCESS[Data Processing]
     end
-    
-    subgraph "Machine Learning"
-        MODEL["🤖 ML Model<br/>Random Forest Regression<br/>power_prediction.sav"]
-        FEATURES["📊 Feature Engineering<br/>Wind Speed, Temperature<br/>Humidity, Pressure"]
+    subgraph ML_LAYER[Machine Learning]
+        MODEL[Random Forest Model]
+        FEAT[Feature Engineering]
     end
-    
-    subgraph "Data Layer"
-        CSV["💾 Historical Data<br/>T1.csv"]
-        JOBLIB["📦 Model Storage<br/>Joblib Format"]
+    subgraph DATA_LAYER[Data Layer]
+        CSV[T1.csv]
+        MODEL_FILE[power_prediction.sav]
     end
-    
-    subgraph "External Services"
-        WEATHER["🌤️ Weather API<br/>Real-time Data"]
-    end
-    
-    UI -->|User Input| ROUTE
-    ROUTE -->|Fetch Weather| API
-    API -->|Weather Data| WEATHER
-    WEATHER -->|Returns Data| PROCESSING
-    PROCESSING -->|Feature Vector| MODEL
-    FEATURES -->|Training Data| MODEL
-    CSV -->|Historical Data| FEATURES
-    MODEL -->|Predictions| ROUTE
-    ROUTE -->|Result| UI
-    ROUTE -->|Load Model| JOBLIB
-    
-    style UI fill:#E1F5FF
-    style ROUTE fill:#FFF9C4
-    style API fill:#FFF9C4
-    style PROCESSING fill:#FFF9C4
-    style MODEL fill:#F3E5F5
-    style FEATURES fill:#F3E5F5
-    style CSV fill:#E8F5E9
-    style JOBLIB fill:#E8F5E9
-    style WEATHER fill:#FCE4EC
+
+    UI --> ROUTE
+    ROUTE --> API
+    API --> PROCESS
+    PROCESS --> MODEL
+    CSV --> FEAT
+    FEAT --> MODEL
+    MODEL_FILE --> ROUTE
+    MODEL --> ROUTE
+    ROUTE --> UI
 ```
 
 ## Architecture Components

@@ -1,57 +1,26 @@
 # Activity Diagram - Wind Energy Prediction Flow
 
 ```mermaid
-graph TD
-    START([🟢 Start]) --> A["User Navigates to<br/>Prediction Page"]
-    
-    A --> B{"Select Input<br/>Method"}
-    
-    B -->|API Method| C["User Enters City Name"]
-    B -->|Manual Method| D["User Enters Parameters"]
-    
-    C --> E["Fetch Weather Data<br/>from OpenWeatherMap API"]
-    E --> F{"API Request<br/>Successful?"}
-    F -->|Yes| G["Extract Weather Parameters<br/>Temp, Humidity,<br/>Pressure, Wind Speed"]
-    F -->|No| H["Display Error Message"]
-    H --> A
-    
+flowchart TD
+    START([Start]) --> A[Open Prediction Page]
+    A --> B{Input Method}
+    B -->|API| C[Enter City]
+    B -->|Manual| D[Enter Parameters]
+    C --> E[Fetch Weather Data]
+    E --> F{Request Successful}
+    F -->|No| A
+    F -->|Yes| G[Extract Weather Values]
     D --> G
-    
-    G --> I["Validate Input Data<br/>Check Range & Format"]
-    I --> J{"Data Valid?"}
-    J -->|No| K["Show Validation Error"]
-    K --> A
-    J -->|Yes| L["Normalize Features<br/>Scaling & Encoding"]
-    
-    L --> M["Load Trained Model<br/>power_prediction.sav"]
-    M --> N["Generate Feature Vector<br/>from Input Parameters"]
-    
-    N --> O["Random Forest Model<br/>Prediction"]
-    O --> P["Generate Energy Output<br/>in kWh"]
-    
-    P --> Q["Format Results<br/>Display Prediction"]
-    Q --> R["Show Results on UI<br/>with Visualization"]
-    
-    R --> S{"User Wants<br/>Another<br/>Prediction?"}
-    S -->|Yes| A
-    S -->|No| END([🛑 End])
-    
-    style START fill:#4CAF50,color:#fff
-    style END fill:#F44336,color:#fff
-    style O fill:#2196F3,color:#fff
-    style A fill:#FFF9C4
-    style B fill:#FFE0B2
-    style C fill:#E1BEE7
-    style D fill:#E1BEE7
-    style E fill:#BBDEFB
-    style G fill:#C8E6C9
-    style I fill:#C8E6C9
-    style L fill:#B3E5FC
-    style M fill:#F8BBD0
-    style N fill:#F8BBD0
-    style P fill:#D1C4E9
-    style Q fill:#FFCCBC
-    style R fill:#FFCCBC
+    G --> H[Validate Data]
+    H --> I{Valid}
+    I -->|No| A
+    I -->|Yes| J[Preprocess Features]
+    J --> K[Load Model]
+    K --> L[Predict Output]
+    L --> M[Show Result]
+    M --> N{Predict Again}
+    N -->|Yes| A
+    N -->|No| FINISH([End])
 ```
 
 ## Prediction Flow Stages

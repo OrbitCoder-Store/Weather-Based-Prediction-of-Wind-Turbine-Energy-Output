@@ -1,54 +1,21 @@
 # Use Case Diagram
 
 ```mermaid
-graph TB
-    subgraph "Wind Turbine Energy Prediction System"
-        UC1["⚡ Predict Energy Output"]
-        UC2["🌍 Fetch Weather Data"]
-        UC3["📊 Manual Input"]
-        UC4["🎯 View Prediction Result"]
-        UC5["📈 View Historical Data"]
-        UC6["🔄 Train Model"]
-    end
-    
-    subgraph "Actors"
-        OPERATOR["👷 Wind Farm Operator"]
-        GRID["🏢 Grid Operator"]
-        ENERGY["⚡ Energy Manager"]
-        SYSTEM["💻 System Admin"]
-    end
-    
-    OPERATOR -->|Uses| UC1
-    OPERATOR -->|Uses| UC2
-    OPERATOR -->|Uses| UC3
-    OPERATOR -->|Views| UC4
-    
-    GRID -->|Uses| UC1
-    GRID -->|Uses| UC4
-    GRID -->|Uses| UC5
-    
-    ENERGY -->|Uses| UC1
-    ENERGY -->|Uses| UC3
-    ENERGY -->|Views| UC4
-    
-    SYSTEM -->|Performs| UC6
-    SYSTEM -->|Maintains| UC1
-    
-    UC2 -->|Fetches from| API["🌐 Weather API"]
-    UC3 -->|Input from| User["👤 Manual Input"]
-    UC1 -->|Uses| ML["🤖 ML Model"]
-    UC5 -->|Accesses| DB["💾 Historical Data"]
-    
-    style UC1 fill:#E3F2FD
-    style UC2 fill:#E3F2FD
-    style UC3 fill:#E3F2FD
-    style UC4 fill:#E3F2FD
-    style UC5 fill:#E3F2FD
-    style UC6 fill:#FCE4EC
-    style OPERATOR fill:#FFF9C4
-    style GRID fill:#FFF9C4
-    style ENERGY fill:#FFF9C4
-    style SYSTEM fill:#FFF9C4
+flowchart LR
+    OP[Wind Farm Operator] --> UC1[Predict Energy Output]
+    OP --> UC2[Fetch Weather Data]
+    OP --> UC3[Manual Input]
+    OP --> UC4[View Prediction Result]
+
+    GO[Grid Operator] --> UC1
+    GO --> UC4
+    GO --> UC5[View Historical Data]
+
+    EM[Energy Manager] --> UC1
+    EM --> UC3
+    EM --> UC4
+
+    SA[System Admin] --> UC6[Train Model]
 ```
 
 ## Use Case Scenarios

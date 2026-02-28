@@ -1,92 +1,39 @@
 # System Design Diagram
 
 ```mermaid
-graph TB
-    subgraph "Client Layer"
-        BROWSER["🌐 Web Browser"]
-        HTML["📄 HTML Pages<br/>intro.html<br/>predict.html"]
-        CSS["🎨 Stylesheets<br/>style.css"]
-        JS["⚙️ JavaScript<br/>Event Handling"]
+flowchart TB
+    subgraph CLIENT[Client Layer]
+        BROWSER[Web Browser]
+        PAGES[HTML Pages]
     end
-    
-    subgraph "Application Layer"
-        APP["🚀 Flask Application<br/>app.py / windApp.py"]
-        ROUTES["🛣️ Route Handlers<br/>@ / (intro)<br/>@/predict (predict)"]
-        TEMPLATE["📝 Template Engine<br/>Jinja2"]
+    subgraph APP[Application Layer]
+        FLASK[Flask App]
+        ROUTES[Routes]
+        TPL[Template Engine]
     end
-    
-    subgraph "Business Logic Layer"
-        VALIDATE["✅ Input Validation<br/>Type Check<br/>Range Check"]
-        PREPROCESS["🔄 Data Preprocessing<br/>Normalization<br/>Feature Engineering"]
-        PREDICT["🎯 Prediction Engine<br/>Load Model<br/>Generate Output"]
+    subgraph LOGIC[Business Logic]
+        VALID[Input Validation]
+        PREP[Preprocessing]
+        ENGINE[Prediction Engine]
     end
-    
-    subgraph "Integration Layer"
-        APIHANDLER["🔌 API Handler<br/>OpenWeatherMap"]
-        DATABUFFER["💾 Cache Layer<br/>Request Buffering"]
+    subgraph DATA[Data and Model]
+        MODEL[Random Forest Model]
+        STORE[Model and CSV Storage]
     end
-    
-    subgraph "Data & Model Layer"
-        MODEL["🤖 ML Model<br/>Random Forest Regressor<br/>power_prediction.sav"]
-        SCALER["📊 Feature Scaler<br/>StandardScaler"]
-        JOBLIB["📦 Joblib Serialization"]
+    subgraph EXT[External]
+        WEATHER[OpenWeatherMap API]
     end
-    
-    subgraph "Storage Layer"
-        DATABASE["💾 Data Storage<br/>T1.csv<br/>Historical Data"]
-        MODELSTORE["🗂️ Model Storage<br/>Serialized Models<br/>power_prediction.sav"]
-    end
-    
-    subgraph "External Services"
-        WEATHER["🌤️ OpenWeatherMap API<br/>Real-time Weather Data"]
-    end
-    
-    BROWSER -->|HTTP Request| APP
-    HTML -->|Rendered by| BROWSER
-    CSS -->|Styled with| HTML
-    JS -->|Interacts with| APP
-    
-    APP -->|Renders| TEMPLATE
-    TEMPLATE -->|Uses| HTML
-    APP -->|Routes to| ROUTES
-    ROUTES -->|Calls| VALIDATE
-    VALIDATE -->|Passes to| PREPROCESS
-    PREPROCESS -->|Feeds to| PREDICT
-    
-    VALIDATE -->|Fetches Weather| APIHANDLER
-    APIHANDLER -->|Caches| DATABUFFER
-    DATABUFFER -->|Sends Result| VALIDATE
-    
-    PREDICT -->|Uses| MODEL
-    MODEL -->|Scales Features| SCALER
-    SCALER -->|Returns Output| PREDICT
-    PREDICT -->|Sends Result| APP
-    APP -->|Renders| BROWSER
-    
-    MODEL -->|Loaded from| JOBLIB
-    JOBLIB -->|Reads| MODELSTORE
-    DATABASE -->|Trains| MODEL
-    
-    APIHANDLER -->|Calls| WEATHER
-    
-    style BROWSER fill:#E1F5FF
-    style HTML fill:#E1F5FF
-    style CSS fill:#E1F5FF
-    style JS fill:#E1F5FF
-    style APP fill:#FFF9C4
-    style ROUTES fill:#FFF9C4
-    style TEMPLATE fill:#FFF9C4
-    style VALIDATE fill:#F3E5F5
-    style PREPROCESS fill:#F3E5F5
-    style PREDICT fill:#F3E5F5
-    style APIHANDLER fill:#FCE4EC
-    style DATABUFFER fill:#FCE4EC
-    style MODEL fill:#E8F5E9
-    style SCALER fill:#E8F5E9
-    style JOBLIB fill:#E8F5E9
-    style DATABASE fill:#BBDEFB
-    style MODELSTORE fill:#BBDEFB
-    style WEATHER fill:#FFE0B2
+
+    BROWSER --> FLASK
+    PAGES --> BROWSER
+    FLASK --> ROUTES
+    FLASK --> TPL
+    ROUTES --> VALID
+    VALID --> PREP
+    PREP --> ENGINE
+    ENGINE --> MODEL
+    STORE --> MODEL
+    VALID --> WEATHER
 ```
 
 ## System Components Architecture

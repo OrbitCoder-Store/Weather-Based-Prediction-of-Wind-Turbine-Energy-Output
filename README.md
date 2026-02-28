@@ -61,21 +61,12 @@ Wind farms face significant operational challenges in predicting energy output a
 ### 📈 Problem Statement Diagram
 
 ```mermaid
-graph TB
-    A["❌ Current Problem"] -->|Traditional Methods| B["Manual Analysis<br/>Inaccurate<br/>Delayed Decisions"]
-    A -->|Limitations| C["✕ No Real-time Adaptation<br/>✕ High Prediction Error<br/>✕ Inefficient Planning<br/>✕ Grid Imbalance Risk"]
-    
-    D["✅ Proposed Solution<br/>ML-Based Prediction"] -->|Modern Technology| E["Intelligent Algorithms<br/>Real-time Processing<br/>High Accuracy"]
-    D -->|Benefits| F["✓ 90%+ Prediction Accuracy<br/>✓ Real-time Adaptation<br/>✓ Optimal Planning<br/>✓ Grid Stability"]
-    
+flowchart TB
+    A[Current Problem] -->|Traditional Methods| B[Manual Analysis and Delayed Decisions]
+    A -->|Limitations| C[No Real-time Adaptation and Higher Error]
+    D[Proposed Solution: ML Prediction] -->|Modern Technology| E[Intelligent Algorithms and Real-time Processing]
+    D -->|Benefits| F[Higher Accuracy and Better Planning]
     C -->|Gap| F
-    
-    style A fill:#FFCDD2
-    style B fill:#FFCDD2
-    style C fill:#FFCDD2
-    style D fill:#C8E6C9
-    style E fill:#C8E6C9
-    style F fill:#C8E6C9
 ```
 
 ---
@@ -115,51 +106,33 @@ Grid operators can:
 The system is designed with a multi-layered architecture for scalability and maintainability:
 
 ```mermaid
-graph TB
-    subgraph "User Interface Layer"
-        UI["🌐 Web UI<br/>HTML5 + CSS3"]
+flowchart TB
+    subgraph UI_LAYER[User Interface Layer]
+        UI[Web UI: HTML and CSS]
     end
-    
-    subgraph "Flask Backend"
-        ROUTE["📍 Route Handler<br/>app.py"]
-        API["🔌 API Integration<br/>OpenWeatherMap"]
-        PROCESSING["⚙️ Data Processing<br/>NumPy + Pandas"]
+    subgraph BACKEND[Flask Backend]
+        ROUTE[Route Handler]
+        API[Weather API Integration]
+        PROCESS[Data Processing]
     end
-    
-    subgraph "Machine Learning"
-        MODEL["🤖 ML Model<br/>Random Forest Regression<br/>power_prediction.sav"]
-        FEATURES["📊 Feature Engineering<br/>Wind Speed, Temperature<br/>Humidity, Pressure"]
+    subgraph ML_LAYER[Machine Learning]
+        MODEL[Random Forest Model]
+        FEAT[Feature Engineering]
     end
-    
-    subgraph "Data Layer"
-        CSV["💾 Historical Data<br/>T1.csv"]
-        JOBLIB["📦 Model Storage<br/>Joblib Format"]
+    subgraph DATA_LAYER[Data Layer]
+        CSV[T1.csv]
+        MODEL_FILE[power_prediction.sav]
     end
-    
-    subgraph "External Services"
-        WEATHER["🌤️ Weather API<br/>Real-time Data"]
-    end
-    
-    UI -->|User Input| ROUTE
-    ROUTE -->|Fetch Weather| API
-    API -->|Weather Data| WEATHER
-    WEATHER -->|Returns Data| PROCESSING
-    PROCESSING -->|Feature Vector| MODEL
-    FEATURES -->|Training Data| MODEL
-    CSV -->|Historical Data| FEATURES
-    MODEL -->|Predictions| ROUTE
-    ROUTE -->|Result| UI
-    ROUTE -->|Load Model| JOBLIB
-    
-    style UI fill:#E1F5FF
-    style ROUTE fill:#FFF9C4
-    style API fill:#FFF9C4
-    style PROCESSING fill:#FFF9C4
-    style MODEL fill:#F3E5F5
-    style FEATURES fill:#F3E5F5
-    style CSV fill:#E8F5E9
-    style JOBLIB fill:#E8F5E9
-    style WEATHER fill:#FCE4EC
+
+    UI --> ROUTE
+    ROUTE --> API
+    API --> PROCESS
+    PROCESS --> MODEL
+    CSV --> FEAT
+    FEAT --> MODEL
+    MODEL --> ROUTE
+    MODEL_FILE --> ROUTE
+    ROUTE --> UI
 ```
 
 📄 **[Detailed Technical Architecture Diagram](outputs/diagrams/technical_architecture.md)**
@@ -167,52 +140,21 @@ graph TB
 ### Use Case Diagram
 
 ```mermaid
-graph TB
-    subgraph "Wind Turbine Energy Prediction System"
-        UC1["⚡ Predict Energy Output"]
-        UC2["🌍 Fetch Weather Data"]
-        UC3["📊 Manual Input"]
-        UC4["🎯 View Prediction Result"]
-        UC5["📈 View Historical Data"]
-    end
-    
-    subgraph "Actors"
-        OPERATOR["👷 Wind Farm Operator"]
-        GRID["🏢 Grid Operator"]
-        ENERGY["⚡ Energy Manager"]
-        SYSTEM["💻 System Admin"]
-    end
-    
-    OPERATOR -->|Uses| UC1
-    OPERATOR -->|Uses| UC2
-    OPERATOR -->|Uses| UC3
-    OPERATOR -->|Views| UC4
-    
-    GRID -->|Uses| UC1
-    GRID -->|Uses| UC4
-    GRID -->|Uses| UC5
-    
-    ENERGY -->|Uses| UC1
-    ENERGY -->|Uses| UC3
-    ENERGY -->|Views| UC4
-    
-    SYSTEM -->|Performs| UC6["🔄 Train Model"]
-    SYSTEM -->|Maintains| UC1
-    
-    UC2 -->|Fetches from| API["🌐 Weather API"]
-    UC3 -->|Input from| User["👤 Manual Input"]
-    UC1 -->|Uses| ML["🤖 ML Model"]
-    UC5 -->|Accesses| DB["💾 Historical Data"]
-    
-    style UC1 fill:#E3F2FD
-    style UC2 fill:#E3F2FD
-    style UC3 fill:#E3F2FD
-    style UC4 fill:#E3F2FD
-    style UC5 fill:#E3F2FD
-    style OPERATOR fill:#FFF9C4
-    style GRID fill:#FFF9C4
-    style ENERGY fill:#FFF9C4
-    style SYSTEM fill:#FFF9C4
+flowchart LR
+    OP[Wind Farm Operator] --> UC1[Predict Energy Output]
+    OP --> UC2[Fetch Weather Data]
+    OP --> UC3[Manual Input]
+    OP --> UC4[View Prediction Result]
+
+    GO[Grid Operator] --> UC1
+    GO --> UC4
+    GO --> UC5[View Historical Data]
+
+    EM[Energy Manager] --> UC1
+    EM --> UC3
+    EM --> UC4
+
+    SA[System Admin] --> UC6[Train Model]
 ```
 
 📄 **[Complete Use Case Diagram](outputs/diagrams/use_case_diagram.md)**
@@ -220,57 +162,26 @@ graph TB
 ### Activity Flow Diagram
 
 ```mermaid
-graph TD
-    START([🟢 Start]) --> A["User Navigates to<br/>Prediction Page"]
-    
-    A --> B{"Select Input<br/>Method"}
-    
-    B -->|API Method| C["User Enters City Name"]
-    B -->|Manual Method| D["User Enters Parameters"]
-    
-    C --> E["Fetch Weather Data<br/>from OpenWeatherMap API"]
-    E --> F{"API Request<br/>Successful?"}
-    F -->|Yes| G["Extract Weather Parameters<br/>Temp, Humidity,<br/>Pressure, Wind Speed"]
-    F -->|No| H["Display Error Message"]
-    H --> A
-    
+flowchart TD
+    START([Start]) --> A[Open Prediction Page]
+    A --> B{Input Method}
+    B -->|API| C[Enter City]
+    B -->|Manual| D[Enter Parameters]
+    C --> E[Fetch Weather Data]
+    E --> F{Request Successful}
+    F -->|No| A
+    F -->|Yes| G[Extract Weather Values]
     D --> G
-    
-    G --> I["Validate Input Data<br/>Check Range & Format"]
-    I --> J{"Data Valid?"}
-    J -->|No| K["Show Validation Error"]
-    K --> A
-    J -->|Yes| L["Normalize Features<br/>Scaling & Encoding"]
-    
-    L --> M["Load Trained Model<br/>power_prediction.sav"]
-    M --> N["Generate Feature Vector<br/>from Input Parameters"]
-    
-    N --> O["Random Forest Model<br/>Prediction"]
-    O --> P["Generate Energy Output<br/>in kWh"]
-    
-    P --> Q["Format Results<br/>Display Prediction"]
-    Q --> R["Show Results on UI<br/>with Visualization"]
-    
-    R --> S{"User Wants<br/>Another<br/>Prediction?"}
-    S -->|Yes| A
-    S -->|No| END([🛑 End])
-    
-    style START fill:#4CAF50,color:#fff
-    style END fill:#F44336,color:#fff
-    style O fill:#2196F3,color:#fff
-    style A fill:#FFF9C4
-    style B fill:#FFE0B2
-    style C fill:#E1BEE7
-    style D fill:#E1BEE7
-    style E fill:#BBDEFB
-    style G fill:#C8E6C9
-    style I fill:#C8E6C9
-    style L fill:#B3E5FC
-    style M fill:#F8BBD0
-    style N fill:#F8BBD0
-    style P fill:#D1C4E9
-    style Q fill:#FFCCBC
-    style R fill:#FFCCBC
+    G --> H[Validate Data]
+    H --> I{Valid}
+    I -->|No| A
+    I -->|Yes| J[Preprocess Features]
+    J --> K[Load Model]
+    K --> L[Predict Output]
+    L --> M[Show Result]
+    M --> N{Predict Again}
+    N -->|Yes| A
+    N -->|No| FINISH([End])
 ```
 
 📄 **[Complete Activity Diagram](outputs/diagrams/activity_diagram.md)**
@@ -278,92 +189,39 @@ graph TD
 ### System Design Diagram
 
 ```mermaid
-graph TB
-    subgraph "Client Layer"
-        BROWSER["🌐 Web Browser"]
-        HTML["📄 HTML Pages<br/>intro.html<br/>predict.html"]
-        CSS["🎨 Stylesheets<br/>style.css"]
-        JS["⚙️ JavaScript<br/>Event Handling"]
+flowchart TB
+    subgraph CLIENT[Client Layer]
+        BROWSER[Web Browser]
+        PAGES[HTML Pages]
     end
-    
-    subgraph "Application Layer"
-        APP["🚀 Flask Application<br/>app.py / windApp.py"]
-        ROUTES["🛣️ Route Handlers<br/>@ / (intro)<br/>@/predict (predict)"]
-        TEMPLATE["📝 Template Engine<br/>Jinja2"]
+    subgraph APP[Application Layer]
+        FLASK[Flask App]
+        ROUTES[Routes]
+        TPL[Template Engine]
     end
-    
-    subgraph "Business Logic Layer"
-        VALIDATE["✅ Input Validation<br/>Type Check<br/>Range Check"]
-        PREPROCESS["🔄 Data Preprocessing<br/>Normalization<br/>Feature Engineering"]
-        PREDICT["🎯 Prediction Engine<br/>Load Model<br/>Generate Output"]
+    subgraph LOGIC[Business Logic]
+        VALID[Input Validation]
+        PREP[Preprocessing]
+        ENGINE[Prediction Engine]
     end
-    
-    subgraph "Integration Layer"
-        APIHANDLER["🔌 API Handler<br/>OpenWeatherMap"]
-        DATABUFFER["💾 Cache Layer<br/>Request Buffering"]
+    subgraph DATA[Data and Model]
+        MODEL[Random Forest Model]
+        STORE[Model and CSV Storage]
     end
-    
-    subgraph "Data & Model Layer"
-        MODEL["🤖 ML Model<br/>Random Forest Regressor<br/>power_prediction.sav"]
-        SCALER["📊 Feature Scaler<br/>StandardScaler"]
-        JOBLIB["📦 Joblib Serialization"]
+    subgraph EXT[External]
+        WEATHER[OpenWeatherMap API]
     end
-    
-    subgraph "Storage Layer"
-        DATABASE["💾 Data Storage<br/>T1.csv<br/>Historical Data"]
-        MODELSTORE["🗂️ Model Storage<br/>Serialized Models<br/>power_prediction.sav"]
-    end
-    
-    subgraph "External Services"
-        WEATHER["🌤️ OpenWeatherMap API<br/>Real-time Weather Data"]
-    end
-    
-    BROWSER -->|HTTP Request| APP
-    HTML -->|Rendered by| BROWSER
-    CSS -->|Styled with| HTML
-    JS -->|Interacts with| APP
-    
-    APP -->|Renders| TEMPLATE
-    TEMPLATE -->|Uses| HTML
-    APP -->|Routes to| ROUTES
-    ROUTES -->|Calls| VALIDATE
-    VALIDATE -->|Passes to| PREPROCESS
-    PREPROCESS -->|Feeds to| PREDICT
-    
-    VALIDATE -->|Fetches Weather| APIHANDLER
-    APIHANDLER -->|Caches| DATABUFFER
-    DATABUFFER -->|Sends Result| VALIDATE
-    
-    PREDICT -->|Uses| MODEL
-    MODEL -->|Scales Features| SCALER
-    SCALER -->|Returns Output| PREDICT
-    PREDICT -->|Sends Result| APP
-    APP -->|Renders| BROWSER
-    
-    MODEL -->|Loaded from| JOBLIB
-    JOBLIB -->|Reads| MODELSTORE
-    DATABASE -->|Trains| MODEL
-    
-    APIHANDLER -->|Calls| WEATHER
-    
-    style BROWSER fill:#E1F5FF
-    style HTML fill:#E1F5FF
-    style CSS fill:#E1F5FF
-    style JS fill:#E1F5FF
-    style APP fill:#FFF9C4
-    style ROUTES fill:#FFF9C4
-    style TEMPLATE fill:#FFF9C4
-    style VALIDATE fill:#F3E5F5
-    style PREPROCESS fill:#F3E5F5
-    style PREDICT fill:#F3E5F5
-    style APIHANDLER fill:#FCE4EC
-    style DATABUFFER fill:#FCE4EC
-    style MODEL fill:#E8F5E9
-    style SCALER fill:#E8F5E9
-    style JOBLIB fill:#E8F5E9
-    style DATABASE fill:#BBDEFB
-    style MODELSTORE fill:#BBDEFB
-    style WEATHER fill:#FFE0B2
+
+    BROWSER --> FLASK
+    PAGES --> BROWSER
+    FLASK --> ROUTES
+    FLASK --> TPL
+    ROUTES --> VALID
+    VALID --> PREP
+    PREP --> ENGINE
+    ENGINE --> MODEL
+    STORE --> MODEL
+    VALID --> WEATHER
 ```
 
 📄 **[Complete System Design Diagram](outputs/diagrams/system_design.md)**
