@@ -45,7 +45,7 @@ plt.scatter(y_test, y_pred)
 plt.xlabel("Actual Power (kW)")
 plt.ylabel("Predicted Power (kW)")
 plt.title("Actual vs Predicted Power")
-plt.savefig("static/accuracy_graph.png")
+plt.savefig("../outputs/accuracy_graph.png")
 plt.close()
 
 print("✅ Model trained & accuracy graph saved")
