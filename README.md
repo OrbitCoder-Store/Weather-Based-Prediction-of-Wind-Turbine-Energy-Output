@@ -686,14 +686,13 @@ This project demonstrates how **machine learning and web technologies** can be c
 **APSCHE AIML Project – Renewable Energy & Machine Learning**
 
 ### 👑 Team Lead
-- **You** - Project Lead & Technical Architect
+- **Aditya Indana** - Project Lead & Technical Architect
 
 ### 🏆 Development Team
 
 | Role | Member | GitHub |
 |------|--------|--------|
-| **Team Lead** | You | [Your Profile](https://github.com/your-username) |
-| **Developer** | Aditya Indana | [22MH1A42G1](https://github.com/22MH1A42G1) |
+| **Team Lead** | Aditya Indana | [22MH1A42G1](https://github.com/22MH1A42G1) |
 | **Developer** | KAMPARAPU SRI RAM | [22MH1A42G5](https://github.com/22MH1A42G5) |
 | **Developer** | Vinay Charu Kirthan Rohit Kotha | [RohitKotha](https://github.com/RohitKotha) |
 | **Developer** | Likhitha Hasini Chebolu | [22mh1a42h0](https://github.com/22mh1a42h0) |
