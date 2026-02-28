@@ -228,7 +228,28 @@ flowchart TB
 
 ---
 
-## 🎯 Project Objectives
+## � Demo Video
+
+### ▶️ Watch Project Demo
+
+<div align="center">
+
+[![Watch the video](https://img.shields.io/badge/Watch%20Demo%20Video-Google%20Drive-4285F4?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/16NuHSP_YAeXxIMKlEn_UtAKdcrtiAlwx/view?usp=sharing)
+
+**Click above to view the complete project demonstration**
+
+See the Wind Turbine Energy Prediction system in action:
+- Web UI walkthrough
+- Real-time energy predictions
+- API integration with weather data
+- Model accuracy demonstration
+- Interactive prediction examples
+
+</div>
+
+---
+
+## �🎯 Project Objectives
 
 By completing this project, you will be able to:
 
