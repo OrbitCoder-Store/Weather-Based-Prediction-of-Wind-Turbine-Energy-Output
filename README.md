@@ -28,7 +28,6 @@ By analyzing **historical wind and weather data**, a regression-based machine le
 
 ✔ **Regression Problem**
 Because the output (energy in kWh) is a **continuous numerical value**, regression algorithms are used.
-
 ---
 
 ## ⚠️ Problem Statement
@@ -594,4 +593,5 @@ For questions, suggestions, or contributions, feel free to reach out:
 ---
 
 *This project represents the collaborative effort of the APSCHE AIML team, demonstrating excellence in renewable energy technology and machine learning applications.*
+
 
