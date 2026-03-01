@@ -14,7 +14,6 @@
 *Using weather conditions to forecast renewable energy generation with high accuracy*
 
 </div>
-
 ---
 
 ## 📌 Project Overview
@@ -595,3 +594,4 @@ For questions, suggestions, or contributions, feel free to reach out:
 ---
 
 *This project represents the collaborative effort of the APSCHE AIML team, demonstrating excellence in renewable energy technology and machine learning applications.*
+
